@@ -2,38 +2,26 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const axiosInstance = require('../supabaseConfig');
+const axiosInstance = require('./supabaseConfig'); // Adjusted path for the same directory
 
 const app = express();
 const PORT = process.env.PORT || 4000; 
 
 app.use(cors());
-
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public'))); // Adjusted path for serving static files
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/welcome', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'welcome.html'));
+// Serve the welcome page at the root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'welcome.html'));
 });
 
+// Serve the snacks page
 app.get('/snacks.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'snacks.html'));
+  res.sendFile(path.join(__dirname, '../public', 'snacks.html'));
 });
 
-
-app.get('/', async (req, res) => {
-  try {
-    const response = await axiosInstance.get('/snacks?order=id.asc'); // Order by 'id' ascending
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching snacks:', error.message);
-    res.status(error.response?.status || 500).json({
-      error: error.response?.data?.message || 'An error occurred while fetching snacks.'
-    });
-  }
-});
-
+// Get a list of snacks
 app.get('/snacks', async (req, res) => {
   try {
     const response = await axiosInstance.get('/snacks?order=id.asc'); // Order by 'id' ascending
@@ -46,6 +34,7 @@ app.get('/snacks', async (req, res) => {
   }
 });
 
+// Get a specific snack by ID
 app.get('/snacks/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -63,6 +52,7 @@ app.get('/snacks/:id', async (req, res) => {
   }
 });
 
+// Add a new snack
 app.post('/snacks', async (req, res) => {
   const { name, description, price, category, inStock } = req.body;
   if (!name || !description || price == null || category == null || inStock == null) {
@@ -86,6 +76,7 @@ app.post('/snacks', async (req, res) => {
   }
 });
 
+// Update a snack by ID
 app.put('/snacks/:id', async (req, res) => {
   const { id } = req.params;
   const { name, description, price, category, inStock } = req.body;
@@ -110,6 +101,7 @@ app.put('/snacks/:id', async (req, res) => {
   }
 });
 
+// Delete a snack by ID
 app.delete('/snacks/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -126,7 +118,3 @@ app.delete('/snacks/:id', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
