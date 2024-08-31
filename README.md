@@ -20,10 +20,9 @@ Install dependencies: npm install
 
 Create a `.env` file in the root directory of the project
 
-```SUPABASE_URL=https://your-project-id.supabase.co
+`SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_KEY=your-anon-public-key
-PORT=4000```
-
+PORT=4000`
 
 ## Run the Server
 
