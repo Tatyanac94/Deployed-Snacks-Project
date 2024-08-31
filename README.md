@@ -14,7 +14,16 @@ Navigate to the project directory: cd [project-directory]
 
 ## Installation Command
 
-Install dependencies: npm install express cors dotenv
+Install dependencies: npm install
+
+## Set Up Environmental Variables
+
+Create a `.env` file in the root directory of the project
+
+```SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_KEY=your-anon-public-key
+PORT=4000```
+
 
 ## Run the Server
 
