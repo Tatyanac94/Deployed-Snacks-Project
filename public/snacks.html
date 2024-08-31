@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snacks List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #snack-list {
+            margin-bottom: 20px;
+        }
+        #supabase-info {
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: blue;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: darkblue;
+        }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snacks List</h1>
+    
+    <a href="/">Back to Welcome Page</a>
+
+    <div id="supabase-info">
+        <h2>Supabase Database Information</h2>
+        <p>This section contains information about the Supabase database used for the snacks project.</p>
+        <ul>
+            <li><strong>Table Name:</strong> snacks</li>
+            <li><strong>Columns:</strong> id, name, description, price, category, inStock</li>
+        </ul>
+        <p class="disclaimer">
+            <strong>Note:</strong> IDs must be unique in the database. Duplicate IDs are not allowed and will cause errors.
+        </p>
+
+        <a href="/snacks">View Snacks in JSON Format</a>
+    </div>
+
+    <div id="snack-list">
+        <h2>Snack Items</h2>
+        <ul id="snack-items"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/snacks');
+                const snacks = await response.json();
+                const snackItems = document.getElementById('snack-items');
+
+                snacks.forEach(snack => {
+                    const li = document.createElement('li');
+                    li.textContent = `${snack.name} - ${snack.description}`;
+                    snackItems.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching snacks:', error);
+            }
+        });
+    </script>
+</body>
+</html>
