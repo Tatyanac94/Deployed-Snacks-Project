@@ -24,13 +24,10 @@ app.get('/snacks.html', (req, res) => {
 // Get a list of snacks
 app.get('/snacks', async (req, res) => {
   try {
-    const response = await axiosInstance.get('/snacks?order=id.asc'); // Order by 'id' ascending
+    const response = await axiosInstance.get('/snacks?order=id.asc');
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching snacks:', error.message);
-    res.status(error.response?.status || 500).json({
-      error: error.response?.data?.message || 'An error occurred while fetching snacks.'
-    });
+    res.status(error.response?.status || 500).json({ error: 'An error occurred' });
   }
 });
 
