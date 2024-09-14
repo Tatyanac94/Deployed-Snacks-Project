@@ -1,23 +1,19 @@
-// api/index.js
-require('dotenv').config();
-
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const snacksRouter = require('./snacks');
 const apiKeyMiddleware = require('../middleware/apiKey');
+const snacksRouter = require('./snacks'); // Ensure this points to your routes file
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
-// Apply API key middleware
+// Middleware
 app.use(apiKeyMiddleware);
-
-// Middleware setup
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Route handling
+// Routes
 app.use('/snacks', snacksRouter);
 
 app.get('/', (req, res) => {
@@ -30,5 +26,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-// Export the express app to be used by Vercel
-module.exports = app;
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

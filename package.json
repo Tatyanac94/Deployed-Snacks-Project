@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js",
     "test": "jest",
-    "start": "nodemon src/index.js"
+    "vercel-build": "echo 'No build step required.'"
   },
   "keywords": [],
   "author": "Tatyana Cuttino",

@@ -1,10 +1,9 @@
-//routes/Snacks.js
 const express = require('express');
+const createSnackHandler = require('./createSnack');
+const deleteSnackHandler = require('./deleteSnack');
 const getSnacksHandler = require('./getSnacks');
 const getSnackByIdHandler = require('./getSnacksById');
-const createSnackHandler = require('./createSnack');
 const updateSnackHandler = require('./updateSnack');
-const deleteSnackHandler = require('./deleteSnack');
 
 const router = express.Router();
 
