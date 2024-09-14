@@ -1,8 +1,10 @@
+// api/index.js
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const serverless = require('serverless-http');
 const apiKeyMiddleware = require('../middleware/apiKey');
-const snacksRouter = require('./snacks'); // Ensure this points to your routes file
+const snacksRouter = require('../snacks'); // Adjust path if needed
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -26,7 +28,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports.handler = serverless(app);

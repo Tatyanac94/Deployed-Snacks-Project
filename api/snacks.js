@@ -1,9 +1,10 @@
+// api/snacks.js
 const express = require('express');
-const createSnackHandler = require('./createSnack');
-const deleteSnackHandler = require('./deleteSnack');
 const getSnacksHandler = require('./getSnacks');
 const getSnackByIdHandler = require('./getSnacksById');
-const updateSnackHandler = require('./updateSnack');
+const createSnackHandler = require('./createSnack');
+const updateSnackHandler = require('./updateSnack');  // Ensure this file exists
+const deleteSnackHandler = require('./deleteSnack');
 
 const router = express.Router();
 
