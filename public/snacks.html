@@ -59,20 +59,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            const snackItems = document.getElementById('snack-items');
             try {
                 const response = await fetch('/snacks');
                 const snacks = await response.json();
-                const snackItems = document.getElementById('snack-items');
-
-                snacks.forEach(snack => {
-                    const li = document.createElement('li');
-                    li.textContent = `${snack.name} - ${snack.description}`;
-                    snackItems.appendChild(li);
-                });
+                
+                if (Array.isArray(snacks) && snacks.length) {
+                    snacks.forEach(snack => {
+                        const li = document.createElement('li');
+                        li.textContent = `${snack.name} - ${snack.description}`;
+                        snackItems.appendChild(li);
+                    });
+                } else {
+                    snackItems.innerHTML = '<li>No snacks available.</li>';
+                }
             } catch (error) {
                 console.error('Error fetching snacks:', error);
                 snackItems.innerHTML = '<li>Error fetching snacks. Please try again later.</li>';
-            } 
+            }
         });
     </script>
 </body>
