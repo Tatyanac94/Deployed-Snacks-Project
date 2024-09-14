@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index'); // Adjust the path to your app
+const app = require('../api/index'); // Adjust the path to your app
 
 describe('Snacks API', () => {
     let snackId;

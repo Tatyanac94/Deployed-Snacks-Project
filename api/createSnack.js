@@ -1,5 +1,5 @@
 //routes/createSnacks.js
-const axiosInstance = require('../supabaseConfig');
+const axiosInstance = require('../utils/supabaseConfig');
 
 module.exports = async (req, res) => {
     const { name, description, price, category, inStock } = req.body;

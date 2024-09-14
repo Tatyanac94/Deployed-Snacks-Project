@@ -1,5 +1,5 @@
 //routes/getSnacks.js
-const axiosInstance = require('../supabaseConfig');
+const axiosInstance = require('../utils/supabaseConfig');
 
 module.exports = async (req, res) => {
     try {

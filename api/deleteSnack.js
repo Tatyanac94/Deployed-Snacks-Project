@@ -1,5 +1,5 @@
 //routes/deleteSnacks.js
-const axiosInstance = require('../supabaseConfig');
+const axiosInstance = require('../utils/supabaseConfig');
 
 module.exports = async (req, res) => {
     const { id } = req.params;
