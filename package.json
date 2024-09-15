@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest",
-    "vercel-build": "echo 'No build step required.'"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Tatyana Cuttino",
