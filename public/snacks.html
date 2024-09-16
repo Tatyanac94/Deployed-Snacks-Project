@@ -1,4 +1,3 @@
-<!-- public/snacks.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +49,6 @@
             <strong>Note:</strong> IDs must be unique in the database. Duplicate IDs are not allowed and will cause errors.
         </p>
 
-        <!-- Updated link to API endpoint -->
         <a href="/api/snacks">View Snacks in JSON Format</a>
     </div>
 
@@ -63,7 +61,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const snackItems = document.getElementById('snack-items');
             try {
-                const response = await fetch('/api/snacks'); // Fetch from API endpoint
+                const response = await fetch('/api/snacks'); 
                 const snacks = await response.json();
                 
                 if (Array.isArray(snacks) && snacks.length) {

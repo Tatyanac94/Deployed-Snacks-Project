@@ -1,4 +1,3 @@
-// middleware/apiKey.js
 const API_KEY = process.env.API_KEY;
 
 function apiKeyMiddleware(req, res, next) {
