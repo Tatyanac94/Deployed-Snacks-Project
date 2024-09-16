@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const apiRouter = require('./api/index'); 
+const apiRouter = require('./api/index'); // Import the API routes
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -26,14 +26,13 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-app.use((request, response, next) => {
-    response.status(404).json({
-      error:
-        "Resource not found. Are you sure you're looking in the right place?",
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Resource not found. Are you sure you're looking in the right place?",
     });
-  });
-  
-if (process.env.NODE_ENV !== 'production') {
+});
+
+if (process.env.NODE_ENV !== 'test') { 
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
     });
